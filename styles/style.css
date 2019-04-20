@@ -23,7 +23,7 @@ ul.topnav li {
   float: left;
 }
 
-ul.topnav li a {
+ul.topnav a {
   display: block;
   text-align: center;
   text-decoration: none;
