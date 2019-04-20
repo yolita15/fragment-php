@@ -1,0 +1,63 @@
+@font-face {
+  font-family: mainFont;
+  src: url('../font/Cuprum-Regular.ttf');
+}
+
+body {
+  margin: 0;
+  font-family: mainFont, sans-serif;
+  background-color: rgb(252, 251, 227);
+}
+
+/** Nav Bar **/
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding-right: 40px;
+  overflow: hidden;
+  background-color: rgba(233, 205, 175, 0.7);
+}
+
+ul.topnav li {
+  float: left;
+}
+
+ul.topnav li a {
+  display: block;
+  color: rgb(121, 74, 83);
+  text-align: center;
+  text-decoration: none;
+}
+
+ul.topnav li a.logo {
+  background-image: url('../images/logo.png');
+  width: 100px;
+  height: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+ul.topnav li.right {
+  float: right; 
+  padding: 14px 16px;
+}
+
+ul.topnav li.right a:hover {
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  ul.topnav li.right, 
+  ul.topnav li {
+    float: none;
+  }
+  ul.topnab li a.logo {
+    background-image: url('../favicon.png');
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+}
+
+/** Nav Bar **/
