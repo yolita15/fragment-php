@@ -7,6 +7,7 @@ body {
   margin: 0;
   font-family: mainFont, sans-serif;
   background-color: rgb(252, 251, 227);
+  color: rgb(121, 74, 83);
 }
 
 /** Nav Bar **/
@@ -24,9 +25,9 @@ ul.topnav li {
 
 ul.topnav li a {
   display: block;
-  color: rgb(121, 74, 83);
   text-align: center;
   text-decoration: none;
+  color: inherit;
 }
 
 ul.topnav li a.logo {
@@ -40,24 +41,84 @@ ul.topnav li a.logo {
 
 ul.topnav li.right {
   float: right; 
-  padding: 14px 16px;
+  padding: 16px;
 }
 
-ul.topnav li.right a:hover {
+ul.topnav li.right:hover, ul.topnav li.active  {
   color: white;
+  background-color: rgb(233, 205, 175);
 }
+
+/** Nav Bar **/
+
+form {
+  margin: auto;
+  width: 500px;  
+  padding: 20px;
+}
+
+form h2 {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+form input {
+  width: 100%;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid tan;
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+form input:focus {
+  outline-color: rgb(233, 205, 175);
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-style: italic;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-style: italic;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  font-style: italic;
+}
+
+form input[type=submit] {
+  text-transform: uppercase;
+  color: white;
+  background-color: olivedrab;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+form input[type=checkbox] {
+  margin: 20px 0;
+  width: 20px;
+  vertical-align: middle;
+}
+
+form label {
+  font-size: 0.9em;
+}
+
 
 @media screen and (max-width: 600px) {
   ul.topnav li.right, 
   ul.topnav li {
     float: none;
   }
-  ul.topnab li a.logo {
-    background-image: url('../favicon.png');
-    background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+  form {
+    max-width: 90%;
+    min-width: 50%;
   }
 }
 
-/** Nav Bar **/
