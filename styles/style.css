@@ -98,6 +98,7 @@ form input[type=submit] {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
+  font-family: mainFont, sans-serif;
 }
 
 form input[type=checkbox] {
@@ -127,7 +128,7 @@ form label {
 
 .search input {
   margin-top: 20px;
-  max-width: 70%;
+  max-width: 60%;
   display: inline-block;
 }
 
@@ -144,6 +145,61 @@ form label {
   background-color: rgba(233, 205, 175, 0.7);
 }
 /** Search Form **/
+
+/** Add Form **/
+textarea {
+  resize: none;
+  max-width: 69.5%;
+  min-width: 69.5%;
+  height: 150px;
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid tan;
+}
+
+textarea:focus {
+  outline-color: rgb(233, 205, 175);
+}
+
+.add {
+  padding: 0;
+  width: 100%;
+}
+
+.add input, .addButtons {
+  margin: auto;
+  max-width: 70%;
+  min-width: 70%;
+  display: block;
+}
+
+.addButtons {
+  margin-top: 5px;
+}
+
+.addButtons button {
+  float: left;
+  padding: 10px;
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font-family: mainFont, sans-serif;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+#facebook {
+  float: right;
+  border-radius: 50%;
+  color: rgba(92, 38, 54, 0.4);
+}
+
+.addButtons button:hover {
+  border-radius: 4px;
+  background-color: rgba(233, 205, 175, 0.7);
+}
+
+/** Add Form **/
 
 /** Main Container **/
 
