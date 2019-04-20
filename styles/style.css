@@ -7,7 +7,7 @@ body {
   margin: 0;
   font-family: mainFont, sans-serif;
   background-color: rgb(252, 251, 227);
-  color: rgb(121, 74, 83);
+  color: rgb(92, 38, 54);
 }
 
 /** Nav Bar **/
@@ -51,6 +51,7 @@ ul.topnav li.right:hover, ul.topnav li.active  {
 
 /** Nav Bar **/
 
+/** Register and Login Form **/
 form {
   margin: auto;
   width: 500px;  
@@ -63,7 +64,7 @@ form h2 {
   letter-spacing: 2px;
 }
 
-form input {
+input {
   width: 100%;
   margin: 8px 0;
   display: inline-block;
@@ -73,7 +74,7 @@ form input {
   box-sizing: border-box;
 }
 
-form input:focus {
+input:focus {
   outline-color: rgb(233, 205, 175);
 }
 
@@ -109,6 +110,42 @@ form label {
   font-size: 0.9em;
 }
 
+/** Form **/
+
+/** Main Container **/
+.container {
+  margin: auto;
+  max-width: 70%;
+  height: 100vh;
+  text-align: center;
+}
+
+/** Search Form **/
+.search {
+  width: 100%;
+}
+
+.search input {
+  margin-top: 20px;
+  max-width: 70%;
+  display: inline-block;
+}
+
+.search button {
+  padding: 10px;
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.search button:hover {
+  border-radius: 50%;
+  background-color: rgba(233, 205, 175, 0.7);
+}
+/** Search Form **/
+
+/** Main Container **/
 
 @media screen and (max-width: 600px) {
   ul.topnav li.right, 
