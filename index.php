@@ -11,13 +11,15 @@
 	<title>Fragment</title>
 </head>
 <body>
+	<?php 
+	require_once('controllers/dataBaseController.php');
+	?>
 	<!-- Navigation Bar  -->
 	<ul class="topnav">
 		<li><a class="logo" href="index.html"></a></li>
-		<a href="login.html"><li class="right">Вход</li></a>
-		<a href="register.html"><li class="right">Регистрация</li></a>
+		<a href="login.php"><li class="right">Вход</li></a>
+		<a href="register.php"><li class="right">Регистрация</li></a>
 	</ul>
-
 
 	<div class="container">
 		<!-- Search form  -->

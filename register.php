@@ -10,6 +10,9 @@
 	<title>Регистрация</title>
 </head>
 <body>
+	<?php 
+	include_once('controllers/registerController.php');
+	?>
 	<!-- Navigation Bar  -->
 	<ul class="topnav">
 		<li><a class="logo" href="index.html"></a></li>
@@ -18,20 +21,28 @@
 	</ul>
 
 	<!-- Register form -->
-	<form class="register">
+	<form class="register" method="post">
 		<h2>Регистрация</h2>
 
+		<span class="error"><?php echo $existingEmailError; ?></span>
+		<span class="error"><?php echo $emailError; ?></span>
 		<input type="email" name="email" placeholder="Email" autofocus>
-		<input type="text" name="firstName" placeholder="Име">
-		<input type="text" name="lastName" placeholder="Фамилия">
-		<input type="password" name="password" placeholder="Парола">
-		<input type="password" name="password" placeholder="Потвърди парола">
 
-		<input type="checkbox" name="termsAndConditions" value="Text">
-		<label for="termsAndConditions">Съгласен съм с Общите условия и Политиката за поверителност за ползване</label>
+		<span class="error"><?php echo $firstNameError; ?></span>
+		<input type="text" name="firstName" placeholder="Име">
+
+		<span class="error"><?php echo $lastNameError; ?></span>
+		<input type="text" name="lastName" placeholder="Фамилия">
+
+		<span class="error"><?php echo $passwordError; ?></span>
+		<input type="password" name="password" placeholder="Парола">
+
+		<span class="error"><?php echo $repeatPasswordError; ?></span>
+		<input type="password" name="repeat-password" placeholder="Потвърди парола">
+
 		<input type="submit" name="register" value="Регистрирай ме">
 
-		<p>Вече имаш регистрация? Влез в профила си от <a href="login.html">тук</a>!</p>
+		<p>Вече имаш регистрация? Влез в профила си от <a href="login.php">тук</a>!</p>
 	</form>
 </body>
 </html>

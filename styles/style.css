@@ -201,6 +201,22 @@ textarea:focus {
 
 /** Add Form **/
 
+/** My Profile **/
+
+.quotes {
+  display: inline-block;
+  text-align: left;
+  width: 60%;
+}
+
+.profile-details {
+  position: fixed;
+  display: inline-block;
+  text-align: right;
+}
+
+/** My Profile **/
+
 /** Main Container **/
 
 @media screen and (max-width: 600px) {
