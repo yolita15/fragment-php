@@ -115,6 +115,7 @@ form label {
 
 /** Main Container **/
 .container {
+  padding-top: 30px;
   margin: auto;
   max-width: 70%;
   height: 100vh;
@@ -212,7 +213,7 @@ textarea:focus {
 .profile-details {
   position: fixed;
   display: inline-block;
-  text-align: right;
+  text-align: left;
 }
 
 /** My Profile **/

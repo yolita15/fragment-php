@@ -12,33 +12,41 @@
 </head>
 <body>
 	<?php 
+	session_start();
 	require_once('controllers/dataBaseController.php');
+	require_once('controllers/addQuoteController.php');
 	?>
 	<!-- Navigation Bar  -->
 	<ul class="topnav">
-		<li><a class="logo" href="index.html"></a></li>
-		<a href="login.php"><li class="right">Вход</li></a>
-		<a href="register.php"><li class="right">Регистрация</li></a>
-	</ul>
+		<li><a class="logo" href="index.php"></a></li>
+		<?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<a href="logout.php"><li class="right">Изход</li></a>
+		<a href="my-profile.php"><li class="right">Моят профил</li></a>
+		<a href="index.php"><li class="right active">Начало</li></a>';
+	} else {
+	echo '<a href="login.php"><li class="right">Вход</li></a>
+	<a href="register.php"><li class="right">Регистрация</li></a>';
+} ?>
 
-	<div class="container">
-		<!-- Search form  -->
-		<form class="search">
-			<input type="text" name="search" placeholder="Напр: дума, автор и т.н...">
-			<button type="submit" title="Търси"><i class="fas fa-search fa-2x"></i></button>
-		</form>
+</ul>
 
-		<!-- Add form  -->
-		<textarea></textarea>
-		<form class="add">
-			<input type="text" name="author" placeholder="Автор, източник">
-			<div class="addButtons">
-				<button title="Добави"><i class="fas fa-plus-circle"></i> Добави</button>
-				<button id="facebook" title="Пубикация във фейсбук"><i class="fab fa-facebook"></i></button>
-			</div>			
-		</form>
-	</div>
+<div class="container">
+	<!-- Add form  -->
+	<?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	echo '
+	<textarea name="content" form="addQuoteForm"></textarea>
+	<form class="add" id="addQuoteForm" method="post">
+		<input type="text" name="author" placeholder="Автор, източник">
+		<div class="addButtons">
+			<button title="Добави"><i class="fas fa-plus-circle"></i> Добави</button>
+		</div>			
+	</form>';
+} ?>
+</div>
+<span>
+	<?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; $_SESSION['error'] = '';} ?>
+</span>
 
-	<script type="text/javascript" src="fontawesome/js/all.min.js"></script>
+<script type="text/javascript" src="fontawesome/js/all.min.js"></script>
 </body>
 </html>

@@ -11,31 +11,42 @@
 	<title>Моят Профил</title>
 </head>
 <body>
+	<?php session_start(); 
+	require_once('controllers/myQuotesController.php');
+	if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == false) {
+		header("Location: index.php");
+		exit();
+	} ?>
 	<!-- Navigation Bar  -->
 	<ul class="topnav">
 		<li><a class="logo" href="index.php"></a></li>
-		<a href="#"><li class="right">Изход</li></a>
+		<a href="logout.php"><li class="right">Изход</li></a>
 		<a href="my-profile.php"><li class="right active">Моят профил</li></a>
 		<a href="index.php"><li class="right">Начало</li></a>
 	</ul>
 
 	<div class="container">
 		<div class="quotes">
-			<h4>Моите цитати:</h4>
-			<p>Some random text</p>
-			<p>Some random text</p>
-			<p>Some random text</p>
-			<p>Some random text</p>
-			<p>Some random text</p>
-			<p>Some random text</p>
-			<p>Some random text</p>
-			
+			<h4>Моите цитати:</h4>	
+			<?php
+			if (count($quotes) != 0) {
+				foreach ($quotes as $quote) {
+					echo '<div>'.$quote->content.'</div>';
+					echo '<div>'.$quote->author.'</div>';	
+					echo '<form>
+					<input type="hidden" name="quoteId" value="'.$quote->id.'">
+					<button title="Изтрий"><i class="fas fa-trash"></i></button>
+					</form>';
+				}
+			}
+			?>		
 		</div>
 		<div class="profile-details">
-			<p><i class="fas fa-user"></i> Име:</p>
-			<p><i class="fas fa-at"></i> Имейл:</p>
-			<p><i class="fas fa-star"></i> Fragment точки:</p>
+			<h4><i class="fas fa-user"></i> Име: <?php echo $_SESSION['firstName'], ' ',$_SESSION['lastName']; ?></h4>
+			<h4><i class="fas fa-at"></i> Имейл: <?php echo $_SESSION['email']; ?></h4>
+			<h4><i class="fas fa-star"></i> Fragment точки:</h4>
 		</div>
+
 	</div>
 	<script type="text/javascript" src="fontawesome/js/all.min.js"></script>
 </body>

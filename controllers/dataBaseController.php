@@ -7,6 +7,8 @@ function createDB () {
 	$dbName = 'fragment_db';
 	$password = '';
 	$conn = NULL;
+
+	//Create DB
 	try {
 		$conn = new PDO("mysql:host=localhost", $username, $password);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,29 +17,38 @@ function createDB () {
 
 		$conn->exec($createDb);
 
-	} catch(PDOException $e) {
-		$errorArray['error'] = $e;
-		echo json_encode($errorArray, JSON_UNESCAPED_UNICODE);
+	} 
+	catch(PDOException $e) {
 		http_response_code(500);
 	}
 
-	//Create table "user"
+	//Create tables
 	try {
 		$conn = new PDO("mysql:host=$serverName;dbname=$dbName;charset=UTF8", $username, $password);
 
-		$createTable = "CREATE TABLE IF NOT EXISTS user (	    		
-		id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-		email VARCHAR(255) NOT NULL UNIQUE ,
-		first_name VARCHAR(100) NOT NULL,
-		last_name VARCHAR(100) NOT NULL,			    
-		password VARCHAR(2056) NOT NULL
-	)"; 
+		//Create table "user"
+		$createUserTable = $conn->prepare('CREATE TABLE IF NOT EXISTS user (	    		
+			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+			email VARCHAR(255) NOT NULL UNIQUE ,
+			first_name VARCHAR(100) NOT NULL,
+			last_name VARCHAR(100) NOT NULL,			    
+			password VARCHAR(2056) NOT NULL)'); 
 
-	$conn->exec($createTable);}
+		$createUserTable->execute();
 
-	catch (PDOException $e) {	    	
-		$errorArray['error'] = $e;
-		echo json_encode($errorArray, JSON_UNESCAPED_UNICODE);
+		//Create table "quote"
+		$createQuoteTable = $conn->prepare('CREATE TABLE IF NOT EXISTS quote (
+			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+			author VARCHAR(200),
+			content LONGTEXT NOT NULL,
+			publisher_id INT UNSIGNED,
+			KEY publisher (publisher_id),
+			CONSTRAINT publisher FOREIGN KEY (publisher_id)
+			REFERENCES user (id) ON DELETE CASCADE)');
+
+		$createQuoteTable->execute();
+	}
+	catch (PDOException $e) {
 		http_response_code(500);
 	}
 

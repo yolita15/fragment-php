@@ -15,16 +15,18 @@
 	?>
 	<!-- Navigation Bar  -->
 	<ul class="topnav">
-		<li><a class="logo" href="index.html"></a></li>
-		<a href="login.html"><li class="right">Вход</li></a>
-		<a href="register.html"><li class="right active">Регистрация</li></a>
+		<li><a class="logo" href="index.php"></a></li>
+		<a href="login.php"><li class="right">Вход</li></a>
+		<a href="register.php"><li class="right active">Регистрация</li></a>
 	</ul>
 
 	<!-- Register form -->
 	<form class="register" method="post">
 		<h2>Регистрация</h2>
 
-		<span class="error"><?php echo $existingEmailError; ?></span>
+		<span class="error">
+			<?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; $_SESSION['error'] = '';} ?>
+		</span>
 		<span class="error"><?php echo $emailError; ?></span>
 		<input type="email" name="email" placeholder="Email" autofocus>
 

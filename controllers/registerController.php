@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('controllers/dataBaseController.php');
 
 $emailError = "";
@@ -97,10 +98,15 @@ function register($connection) {
 		]);
 
 		if($registerUer->rowCount() > 0) {
+			$_SESSION['loggedin'] = true;
+			$_SESSION['email'] = $_POST['email'];
+			$_SESSION['firstName'] = $_POST['firstName'];
+			$_SESSION['lastName'] = $_POST['lastName'];
 			header("Location: my-profile.php"); 
 			exit();
 		} else {
-			header("Location: email-error.php"); 
+			$_SESSION['error'] = "Имейлът вече съществува!";
+			header("Location: register.php"); 
 			exit();
 		} 
 	}
