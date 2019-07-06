@@ -10,7 +10,7 @@ function createDB () {
 
 	//Create DB
 	try {
-		$conn = new PDO("mysql:host=localhost", $username, $password);
+		$conn = new PDO("mysql:host=$serverName", $username, $password);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 		$createDb = "CREATE DATABASE IF NOT EXISTS $dbName CHARACTER SET utf8 COLLATE utf8_general_ci;";

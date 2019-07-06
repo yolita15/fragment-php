@@ -8,7 +8,9 @@ function getUserQuotes($connection) {
 
 	try {
 		$retrievedQuotes = [];
-		$publisher_id = $_SESSION['userId'];
+		if (isset($_SESSION['userId']) && $_SESSION['userId'] != '') {
+			$publisher_id = $_SESSION['userId'];
+		}
 		$quotesToBeRetrieved = $connection->prepare('SELECT * FROM quote WHERE publisher_id = :publisher_id');
 		$quotesToBeRetrieved->execute(['publisher_id' => $publisher_id]);
 

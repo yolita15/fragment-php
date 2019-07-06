@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('controllers/dataBaseController.php');
+require_once('models/user.php');
 
 $emailError = "";
 $firstNameError = "";
@@ -87,17 +88,26 @@ if($_SERVER['REQUEST_METHOD'] === "POST") {
 
 function register($connection) {
 	try {
-		$registerUer = $connection->prepare('INSERT IGNORE INTO user (email, first_name, last_name, password) 
+		$registerUser = $connection->prepare('INSERT IGNORE INTO user (email, first_name, last_name, password) 
 			VALUES (:email, :first_name, :last_name, :password)');
 
-		$registerUer->execute([
+		$registerUser->execute([
 			'email' => $_POST['email'], 
 			'first_name' => $_POST['firstName'], 
 			'last_name' => $_POST['lastName'], 
 			'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
 		]);
 
-		if($registerUer->rowCount() > 0) {
+		$newUser = $connection->prepare('SELECT * FROM user WHERE email = :email');
+		$newUser->execute(['email' => $_POST['email']]);
+
+		if($newUser->rowCount() > 0) {
+			while ($user = $newUser->fetchObject('User')) {
+				$_SESSION['userId'] = $user->id;
+			}
+		}
+
+		if($registerUser->rowCount() > 0) {
 			$_SESSION['loggedin'] = true;
 			$_SESSION['email'] = $_POST['email'];
 			$_SESSION['firstName'] = $_POST['firstName'];

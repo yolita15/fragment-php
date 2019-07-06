@@ -14,7 +14,7 @@
 	<?php session_start(); 
 	require_once('controllers/myQuotesController.php');
 	if(!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == false) {
-		header("Location: index.php");
+		header("Location: login.php");
 		exit();
 	} ?>
 	<!-- Navigation Bar  -->
@@ -27,24 +27,30 @@
 
 	<div class="container">
 		<div class="quotes">
-			<h4>Моите цитати:</h4>	
+			<h2>Моите цитати:</h2>	
 			<?php
+			$fragmentPoints = count($quotes);
 			if (count($quotes) != 0) {
 				foreach ($quotes as $quote) {
-					echo '<div>'.$quote->content.'</div>';
-					echo '<div>'.$quote->author.'</div>';	
-					echo '<form>
+					echo '<div class="content">" '.$quote->content.' "</div>';
+					echo '<div class="author">- '.$quote->author.'</div>';	
+					echo '<form class="maintainForm" metho="post">
 					<input type="hidden" name="quoteId" value="'.$quote->id.'">
-					<button title="Изтрий"><i class="fas fa-trash"></i></button>
+					<input type="hidden" name="quoteContent" value="'.$quote->content.'">
+					<input type="hidden" name="quoteAuthor" value="'.$quote->author.'">
+					<button type="submit" formmethod="post" formaction="edit.php" class="maintanButtons" title="Редактирай"><i class="fas fa-pen"></i></button>
+					<button type="submit" formmethod="post" formaction="controllers/deleteController.php"  class="maintanButtons" title="Изтрий"><i class="fas fa-trash"></i></button>
 					</form>';
 				}
+			} else {
+				echo '<div class="home-page-content">Може да започнеш... Добави първия си цитат от <a href="index.php">тук </a>! :)</div>';
 			}
 			?>		
 		</div>
 		<div class="profile-details">
 			<h4><i class="fas fa-user"></i> Име: <?php echo $_SESSION['firstName'], ' ',$_SESSION['lastName']; ?></h4>
 			<h4><i class="fas fa-at"></i> Имейл: <?php echo $_SESSION['email']; ?></h4>
-			<h4><i class="fas fa-star"></i> Fragment точки:</h4>
+			<h4><i class="fas fa-star"></i> Fragment точки: <?php echo $fragmentPoints + 10; ?></h4>
 		</div>
 
 	</div>

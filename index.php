@@ -42,10 +42,28 @@
 		</div>			
 	</form>';
 } ?>
-</div>
+
 <span>
 	<?php if(isset($_SESSION['error'])){ echo $_SESSION['error']; $_SESSION['error'] = '';} ?>
 </span>
+	<?php 
+		if(count($allQuotes) != 0) {
+				foreach ($allQuotes as $quote) {
+				$currentUser = getUser($quote->publisher_id, $dbConnection);
+				echo '<div class="home-page-content">" '.$quote->content.' "</div>';
+				echo '<div class="author">- '.$quote->author.'</div>';	
+				echo '<div class="publisher"> Публикувано от:  '.$currentUser->first_name.' '.$currentUser->last_name.'</div>';
+			}
+		} else {
+		if(!isset($_SESSION['loggedin']))
+		{
+			echo '<div class="home-page-content">Все още няма добавени цитати... Промени това от <a href="my-profile.php">тук</a> :)</div>';
+		}
+	}
+	?>
+
+</div>
+<div class="footer"></div>
 
 <script type="text/javascript" src="fontawesome/js/all.min.js"></script>
 </body>
